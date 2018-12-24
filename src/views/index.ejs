@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      <h1><%= title %></h1>
+      <form class="" action="/add" method="post">
+        <legend>
+          Add a mmgv
+        </legend>
+        <div class="form-group">
+          <input placeholder="Add a lentrix" type="text" id="title" class="form-control" name="title">
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Add a description"class="form-control" name="description" rows="1" cols="80"></textarea>
+        </div>
+        <button class="btn btn-primary">Add</button>
+      </form>
+      <hr>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i = 0; i < tasks.length; i++) {%>
+            <tr>
+              <td><%= i + 1%></td>
+              <td>
+                <strong>
+                  <%= tasks[i].title %>
+                </strong>
+              </td>
+              <td>
+                <%= tasks[i].description %>
+              </td>
+              <td>
+                <a
+                  class="<%= tasks[i].status ? 'btn btn-success':'btn btn-dark'%>"
+                  href="/turn/<%=tasks[i]._id%>">Done</a>
+                <a
+                  class="btn btn-danger"
+                  href="/delete/<%=tasks[i]._id%>">Delete</a>
+              </td>
+            </tr>
+          <% }%>
+        </tbody>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('title').focus();
+    </script>
+
+  </body>
+</html>
